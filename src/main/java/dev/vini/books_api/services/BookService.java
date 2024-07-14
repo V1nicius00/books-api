@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BookService {
@@ -30,5 +32,13 @@ public class BookService {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(allBooks);
+    }
+
+    public ResponseEntity<Book> getBookById(UUID id){
+        Optional<Book> book = bookRepository.findById(id);
+        if(book.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(book.get());
     }
 }

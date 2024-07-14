@@ -7,6 +7,8 @@ import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -26,5 +28,9 @@ public class BookController {
     public ResponseEntity<String> getAllBooks(){
         return bookService.getAllBooks();
     }
-    
+
+    @GetMapping("{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable("id") UUID id){
+        return bookService.getBookById(id);
+    }
 }
