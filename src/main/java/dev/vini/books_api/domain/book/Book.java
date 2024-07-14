@@ -72,4 +72,12 @@ public class Book {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public Book (CreateBookDto dto){
+        this.bookName = dto.bookName();
+        this.description = dto.description();
+        this.author = dto.author();
+        this.price = dto.price();
+        this.releaseDate = dto.releaseDate();
+    }
 }
