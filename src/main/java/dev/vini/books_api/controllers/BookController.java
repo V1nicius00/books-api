@@ -22,4 +22,9 @@ public class BookController {
         return bookService.save(dto);
     }
 
+    @GetMapping
+    public ResponseEntity<String> getAllBooks(){
+        return bookService.getAllBooks();
+    }
+    
 }

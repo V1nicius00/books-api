@@ -24,4 +24,11 @@ public class BookService {
         return ResponseEntity.ok(newBook);
     }
 
+    public ResponseEntity getAllBooks(){
+        List<Book> allBooks = bookRepository.findAll();
+        if(allBooks.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(allBooks);
+    }
 }
