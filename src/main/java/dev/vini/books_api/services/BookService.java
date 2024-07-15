@@ -26,6 +26,10 @@ public class BookService {
         return ResponseEntity.ok(newBook);
     }
 
+    public Optional<Book> findById(UUID id){
+        return bookRepository.findById(id);
+    }
+
     public ResponseEntity getAllBooks(){
         List<Book> allBooks = bookRepository.findAll();
         if(allBooks.isEmpty()){
