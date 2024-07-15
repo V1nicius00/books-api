@@ -38,4 +38,10 @@ public class BookController {
     public ResponseEntity updateBook(@PathVariable("id") UUID id, @RequestBody BookDto dto){
         return bookService.updateBookPrice(id, dto);
     }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity deleteBook(@PathVariable("id") UUID id){
+        return bookService.deleteBook(id);
+    }
 }
