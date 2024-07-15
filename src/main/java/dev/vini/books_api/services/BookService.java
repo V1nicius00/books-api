@@ -1,11 +1,11 @@
 package dev.vini.books_api.services;
 
 import dev.vini.books_api.domain.book.Book;
-import dev.vini.books_api.domain.book.CreateBookDto;
+import dev.vini.books_api.domain.book.BookDto;
 import dev.vini.books_api.repositories.BookRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public ResponseEntity save(CreateBookDto dto){
+    public ResponseEntity save(BookDto dto){
         Book newBook = new Book(dto);
         bookRepository.save(newBook);
         return ResponseEntity.ok(newBook);
@@ -34,11 +34,22 @@ public class BookService {
         return ResponseEntity.ok(allBooks);
     }
 
-    public ResponseEntity<Book> getBookById(UUID id){
+    public ResponseEntity getBookById(UUID id){
         Optional<Book> book = bookRepository.findById(id);
         if(book.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(book.get());
+    }
+
+    @Transactional
+    public ResponseEntity updateBookPrice(UUID id, BookDto dto) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        if(optionalBook.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Book book = optionalBook.get();
+        book.setPrice(dto.price());
+        return ResponseEntity.ok(book);
     }
 }

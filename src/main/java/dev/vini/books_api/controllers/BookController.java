@@ -1,10 +1,9 @@
 package dev.vini.books_api.controllers;
 
-import dev.vini.books_api.domain.book.Book;
-import dev.vini.books_api.domain.book.CreateBookDto;
+import dev.vini.books_api.domain.book.BookDto;
 import dev.vini.books_api.services.BookService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -20,17 +19,23 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody CreateBookDto dto){
+    public ResponseEntity createBook(@RequestBody BookDto dto){
         return bookService.save(dto);
     }
 
     @GetMapping
-    public ResponseEntity<String> getAllBooks(){
+    public ResponseEntity getAllBooks(){
         return bookService.getAllBooks();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") UUID id){
+    public ResponseEntity getBookById(@PathVariable("id") UUID id){
         return bookService.getBookById(id);
+    }
+
+    @PutMapping("price/{id}")
+    @Transactional
+    public ResponseEntity updateBook(@PathVariable("id") UUID id, @RequestBody BookDto dto){
+        return bookService.updateBookPrice(id, dto);
     }
 }

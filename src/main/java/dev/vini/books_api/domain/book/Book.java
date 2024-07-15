@@ -33,6 +33,15 @@ public class Book {
     public Book() {
     }
 
+    public Book (UUID id, String bookName, String description, String author, Double price, LocalDate releaseDate) {
+        this.id = id;
+        this.bookName = bookName;
+        this.description = description;
+        this.author = author;
+        this.price = price;
+        this.releaseDate = releaseDate;
+    }
+
     public String getBookName() {
         return bookName;
     }
@@ -73,7 +82,7 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
-    public Book (CreateBookDto dto){
+    public Book (BookDto dto){
         this.bookName = dto.bookName();
         this.description = dto.description();
         this.author = dto.author();
