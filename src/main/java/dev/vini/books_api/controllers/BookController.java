@@ -33,9 +33,15 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @PutMapping("price/{id}")
+    @PutMapping("{id}")
     @Transactional
     public ResponseEntity updateBook(@PathVariable("id") UUID id, @RequestBody BookDto dto){
+        return bookService.updateBook(id, dto);
+    }
+
+    @PutMapping("price/{id}")
+    @Transactional
+    public ResponseEntity updateBookPrice(@PathVariable("id") UUID id, @RequestBody BookDto dto){
         return bookService.updateBookPrice(id, dto);
     }
 

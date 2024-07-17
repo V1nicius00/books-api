@@ -47,6 +47,21 @@ public class BookService {
     }
 
     @Transactional
+    public ResponseEntity updateBook(UUID id, BookDto dto) {
+        Optional<Book> optionalBook = this.findById(id);
+        if(optionalBook.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Book book = optionalBook.get();
+        book.setPrice(dto.price());
+        book.setBookName(dto.bookName());
+        book.setAuthor(dto.author());
+        book.setDescription(dto.description());
+        book.setReleaseDate(dto.releaseDate());
+        return ResponseEntity.ok(book);
+    }
+
+    @Transactional
     public ResponseEntity updateBookPrice(UUID id, BookDto dto) {
         Optional<Book> optionalBook = this.findById(id);
         if(optionalBook.isEmpty()){
@@ -66,4 +81,6 @@ public class BookService {
         bookRepository.delete(optionalBook.get());
         return ResponseEntity.ok("Book deleted " + optionalBook.get().getBookName() + " successfully.");
     }
+
+
 }
