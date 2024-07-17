@@ -2,6 +2,7 @@ package dev.vini.books_api.controllers;
 
 import dev.vini.books_api.domain.book.BookDto;
 import dev.vini.books_api.services.BookService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,11 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity getAllBooks(){
-        return bookService.getAllBooks();
+    public ResponseEntity getAllBooks(@RequestParam(required = false) String bookName){
+        if(bookName == null){
+            return bookService.getAllBooks();
+        }
+        return bookService.getBookByName(bookName);
     }
 
     @GetMapping("{id}")
