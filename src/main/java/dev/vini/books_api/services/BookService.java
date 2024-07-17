@@ -83,4 +83,11 @@ public class BookService {
     }
 
 
+    public ResponseEntity getBookByName(String bookName) {
+        List<Book> book = bookRepository.findByBookName(bookName);
+        if(book.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(book);
+    }
 }
