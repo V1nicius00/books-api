@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface BookRepository extends JpaRepository<Book, UUID> {
     List<Book> findByBookName(String bookName);
     List<Book> findByActiveTrue();
+    List<Book> findByActiveFalse();
 }
