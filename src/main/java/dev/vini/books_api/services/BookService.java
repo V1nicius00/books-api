@@ -78,7 +78,8 @@ public class BookService {
         if(optionalBook.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        bookRepository.delete(optionalBook.get());
+        Book book = optionalBook.get();
+        book.setActive(false);
         return ResponseEntity.ok("Book deleted " + optionalBook.get().getBookName() + " successfully.");
     }
 
