@@ -91,4 +91,13 @@ public class BookService {
         }
         return ResponseEntity.ok(book);
     }
+
+    public ResponseEntity getActiveBooks() {
+        List<Book> activeBooks = bookRepository.findByActiveTrue();
+        if(activeBooks.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(activeBooks);
+    }
+
 }

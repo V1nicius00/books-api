@@ -32,6 +32,11 @@ public class BookController {
         return bookService.getBookByName(bookName);
     }
 
+    @GetMapping("active")
+    public ResponseEntity getActiveBooks(){
+        return bookService.getActiveBooks();
+    }
+
     @GetMapping("{id}")
     public ResponseEntity getBookById(@PathVariable("id") UUID id){
         return bookService.getBookById(id);
