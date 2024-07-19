@@ -100,4 +100,11 @@ public class BookService {
         return ResponseEntity.ok(activeBooks);
     }
 
+    public ResponseEntity getDeactivatedBooks() {
+        List<Book> deactivatedBooks = bookRepository.findByActiveFalse();
+        if(deactivatedBooks.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(deactivatedBooks);
+    }
 }

@@ -37,6 +37,11 @@ public class BookController {
         return bookService.getActiveBooks();
     }
 
+    @GetMapping("deactivated")
+    public ResponseEntity getDeactivatedBooks(){
+        return bookService.getDeactivatedBooks();
+    }
+
     @GetMapping("{id}")
     public ResponseEntity getBookById(@PathVariable("id") UUID id){
         return bookService.getBookById(id);
