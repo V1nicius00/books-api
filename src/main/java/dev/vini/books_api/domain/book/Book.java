@@ -30,6 +30,9 @@ public class Book {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
+    @Column(name = "active")
+    private boolean active;
+
     public Book() {
     }
 
@@ -40,6 +43,7 @@ public class Book {
         this.author = author;
         this.price = price;
         this.releaseDate = releaseDate;
+        this.active = true;
     }
 
     public String getBookName() {
@@ -82,11 +86,20 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public Book (BookDto dto){
         this.bookName = dto.bookName();
         this.description = dto.description();
         this.author = dto.author();
         this.price = dto.price();
         this.releaseDate = dto.releaseDate();
+        this.active = true;
     }
 }
