@@ -80,7 +80,7 @@ public class BookService {
         }
         Book book = optionalBook.get();
         book.setActive(false);
-        return ResponseEntity.ok("Book deleted " + optionalBook.get().getBookName() + " successfully.");
+        return ResponseEntity.ok("Book " + optionalBook.get().getBookName() + " deleted successfully.");
     }
 
 
