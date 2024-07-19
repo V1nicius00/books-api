@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface BookRepository extends JpaRepository<Book, UUID> {
     List<Book> findByBookName(String bookName);
+    List<Book> findByActiveTrue();
 }
