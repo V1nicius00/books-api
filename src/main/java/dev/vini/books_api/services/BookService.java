@@ -86,6 +86,9 @@ public class BookService {
 
     public ResponseEntity getBookByName(String bookName) {
         List<Book> book = bookRepository.findByBookName(bookName);
+        book.stream()
+                .map(a -> a.isActive())
+                .toList();
         if(book.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -107,7 +110,6 @@ public class BookService {
         }
         return ResponseEntity.ok(deactivatedBooks);
     }
-
 
     public ResponseEntity getBooksByPriceLessThan(Double price) {
         List<Book> bookList = bookRepository.findByPriceLessThan(price);
