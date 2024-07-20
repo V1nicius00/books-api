@@ -28,6 +28,9 @@ public class BookController {
     public ResponseEntity getAllBooks(@RequestParam(required = false) String bookName){
         if(bookName == null){
             return bookService.getAllBooks();
+    public ResponseEntity getAllBooks(@RequestParam(required = false) String name){
+        if(name != null){
+            return bookService.getBookByName(name);
         }
         return bookService.getBookByName(bookName);
     }
