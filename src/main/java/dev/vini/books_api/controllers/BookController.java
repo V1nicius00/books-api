@@ -34,16 +34,6 @@ public class BookController {
         return bookService.getAllBooks(bookStatus);
     }
 
-    @GetMapping("active")
-    public ResponseEntity getActiveBooks(){
-        return bookService.getActiveBooks();
-    }
-
-    @GetMapping("deactivated")
-    public ResponseEntity getDeactivatedBooks(){
-        return bookService.getDeactivatedBooks();
-    }
-
     @GetMapping("priceLowerThan/{price}")
     public ResponseEntity getBooksByPriceLessThan(@PathVariable("price") Double price){
         return bookService.getBooksByPriceLessThan(price);
