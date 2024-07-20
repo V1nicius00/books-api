@@ -116,4 +116,12 @@ public class BookService {
         }
         return ResponseEntity.ok(bookList);
     }
+
+    public ResponseEntity getBooksByPriceGreaterThan(Double price) {
+        List<Book> bookList = bookRepository.findByPriceGreaterThan(price);
+        if(bookList.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(bookList);
+    }
 }
