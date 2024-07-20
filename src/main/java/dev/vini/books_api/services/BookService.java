@@ -102,22 +102,6 @@ public class BookService {
         return ResponseEntity.ok(book);
     }
 
-    public ResponseEntity getActiveBooks() {
-        List<Book> activeBooks = bookRepository.findByActiveTrue();
-        if(activeBooks.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(activeBooks);
-    }
-
-    public ResponseEntity getDeactivatedBooks() {
-        List<Book> deactivatedBooks = bookRepository.findByActiveFalse();
-        if(deactivatedBooks.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(deactivatedBooks);
-    }
-
     public ResponseEntity getBooksByPriceLessThan(Double price) {
         List<Book> bookList = bookRepository.findByPriceLessThan(price);
         if(bookList.isEmpty()){
