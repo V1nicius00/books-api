@@ -107,4 +107,13 @@ public class BookService {
         }
         return ResponseEntity.ok(deactivatedBooks);
     }
+
+
+    public ResponseEntity getBooksByPriceLessThan(Double price) {
+        List<Book> bookList = bookRepository.findByPriceLessThan(price);
+        if(bookList.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(bookList);
+    }
 }
