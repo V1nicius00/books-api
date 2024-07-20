@@ -30,12 +30,19 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public ResponseEntity getAllBooks(){
-        List<Book> allBooks = bookRepository.findAll();
+    public ResponseEntity getAllBooks(boolean bookStatus){
+        List<Book> allBooks = this.getBooksByActive(bookStatus);
         if(allBooks.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(allBooks);
+    }
+
+    public List<Book> getBooksByActive(boolean bookStatus){
+        if(!bookStatus){
+            return bookRepository.findByActiveFalse();
+        }
+        return bookRepository.findByActiveTrue();
     }
 
     public ResponseEntity getBookById(UUID id){

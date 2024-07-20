@@ -25,14 +25,13 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity getAllBooks(@RequestParam(required = false) String bookName){
-        if(bookName == null){
-            return bookService.getAllBooks();
-    public ResponseEntity getAllBooks(@RequestParam(required = false) String name){
+    public ResponseEntity getAllBooks(@RequestParam(required = false) String name,
+                                      @RequestParam(required = false) String status){
         if(name != null){
             return bookService.getBookByName(name);
         }
-        return bookService.getBookByName(bookName);
+        boolean bookStatus = (status != null && status.equals("deactivated")) ? false : true;
+        return bookService.getAllBooks(bookStatus);
     }
 
     @GetMapping("active")
