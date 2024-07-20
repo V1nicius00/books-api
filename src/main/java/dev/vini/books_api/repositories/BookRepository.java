@@ -14,4 +14,5 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
     List<Book> findByActiveTrue();
     List<Book> findByActiveFalse();
     List<Book> findByPriceLessThan(Double price);
+    List<Book> findByPriceGreaterThan(Double price);
 }
