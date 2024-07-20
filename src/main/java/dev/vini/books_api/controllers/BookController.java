@@ -47,6 +47,11 @@ public class BookController {
         return bookService.getBooksByPriceLessThan(price);
     }
 
+    @GetMapping("priceGreaterThan/{price}")
+    public ResponseEntity getBooksByPriceGreaterThan(@PathVariable("price") Double price){
+        return bookService.getBooksByPriceGreaterThan(price);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity getBookById(@PathVariable("id") UUID id){
         return bookService.getBookById(id);
