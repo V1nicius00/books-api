@@ -1,6 +1,6 @@
 # Books API
 
-API de controle de estoque de livros
+API construida com o intuito de aprendizado do Spring e JPA
 
 ## Tecnologias utilizadas
 - JPA
