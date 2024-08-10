@@ -46,6 +46,14 @@ public class Book {
         this.active = true;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getBookName() {
         return bookName;
     }
