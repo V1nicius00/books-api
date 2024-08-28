@@ -1,7 +1,6 @@
 package dev.vini.books_api.domain.book;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
