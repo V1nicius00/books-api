@@ -2,6 +2,7 @@ package dev.vini.books_api.services;
 
 import dev.vini.books_api.domain.book.Book;
 import dev.vini.books_api.domain.book.BookDto;
+import dev.vini.books_api.exception.BookNotFoundException;
 import dev.vini.books_api.repositories.BookRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class BookService {
     public ResponseEntity getBookById(UUID id){
         Optional<Book> book = this.findById(id);
         if(book.isEmpty()){
-            return ResponseEntity.notFound().build();
+            throw new BookNotFoundException();
         }
         return ResponseEntity.ok(book.get());
     }
